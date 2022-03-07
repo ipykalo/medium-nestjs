@@ -4,14 +4,14 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 
-import db_config from '../configuration';
+import configuration from '../configuration';
 
 @Module({
   imports: [
     UserModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [db_config]
+      load: [configuration]
     })
   ],
   controllers: [AppController],

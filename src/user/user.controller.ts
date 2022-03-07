@@ -8,7 +8,7 @@ export class UserController {
 
     @Get()
     getUser() {
-        const user = this.configService.get<string>('db.username')
+        const user = this.configService.get('db.username')
         return {
             name: "Ivan",
             age: 33,
