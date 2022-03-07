@@ -4,15 +4,11 @@ import { ConfigService } from "@nestjs/config";
 @Controller('user')
 export class UserController {
 
-    constructor(private configService: ConfigService) { }
-
     @Get()
     getUser() {
-        const user = this.configService.get('db.username')
         return {
             name: "Ivan",
-            age: 33,
-            user: user
+            age: 33
         }
     }
 }
