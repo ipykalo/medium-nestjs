@@ -1,3 +1,4 @@
+import { UserEntity } from "src/entities/user.entity";
 import { ConnectionOptions } from "typeorm";
 
 export const connectionOptions: ConnectionOptions = {
@@ -6,5 +7,7 @@ export const connectionOptions: ConnectionOptions = {
     port: 5432,
     username: 'medium',
     password: '12457800',
-    database: 'medium'
+    database: 'medium',
+    entities: [UserEntity],
+    synchronize: true
 }
