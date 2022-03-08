@@ -25,7 +25,7 @@ export class TagsController {
     async updateTag(@Param('id') id: number, @Body() tag: CreateTagDto) {
         const resp = await this.tagService.editTag(id, tag);
 
-        if (resp.affected) {
+        if (resp?.affected > 0) {
             return 'success';
         }
         return `can not edit tag with id: ${id}`;
@@ -34,7 +34,8 @@ export class TagsController {
     @Delete(':id')
     async deleteTag(@Param('id') id: string): Promise<string> {
         const res = await this.tagService.deleteTag(+id);
-        if (res.affected) {
+
+        if (res?.affected > 0) {
             return 'success';
         }
         return 'can not delete tag';
