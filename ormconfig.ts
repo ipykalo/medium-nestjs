@@ -1,5 +1,6 @@
-import { UserEntity } from "src/entities/user.entity";
 import { ConnectionOptions } from "typeorm";
+import { UserEntity } from "src/user/user.entity";
+import { TagsEntity } from "src/tags/tags.entity";
 
 export const connectionOptions: ConnectionOptions = {
     type: 'postgres',
@@ -8,6 +9,6 @@ export const connectionOptions: ConnectionOptions = {
     username: 'medium',
     password: '12457800',
     database: 'medium',
-    entities: [UserEntity],
+    entities: [TagsEntity, UserEntity],
     synchronize: true
 }
