@@ -1,7 +1,7 @@
 import { join } from "path";
 import { ConnectionOptions } from "typeorm";
 
-export const connectionOptions: ConnectionOptions = {
+const config: ConnectionOptions = {
     type: 'postgres',
     host: 'localhost',
     port: 5432,
@@ -21,3 +21,5 @@ export const connectionOptions: ConnectionOptions = {
     synchronize: false,
     migrationsRun: true
 }
+
+export default config;
