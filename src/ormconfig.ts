@@ -18,7 +18,7 @@ const config: ConnectionOptions = {
     cli: {
         migrationsDir: 'src/migrations'
     },
-    synchronize: true,
+    synchronize: false,
     migrationsRun: true
 }
 
