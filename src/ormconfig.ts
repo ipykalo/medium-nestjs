@@ -1,6 +1,5 @@
+import { join } from "path";
 import { ConnectionOptions } from "typeorm";
-import { UserEntity } from "src/user/user.entity";
-import { TagsEntity } from "src/tags/tags.entity";
 
 export const connectionOptions: ConnectionOptions = {
     type: 'postgres',
@@ -9,6 +8,16 @@ export const connectionOptions: ConnectionOptions = {
     username: 'medium',
     password: '12457800',
     database: 'medium',
-    entities: [TagsEntity, UserEntity],
-    synchronize: true
+    entities: [
+        join(__dirname, '**', '*.entity.{ts,js}')
+    ],
+    migrationsTableName: "migrations_history",
+    migrations: [
+        join(__dirname, 'migrations/*{.ts,.js}')
+    ],
+    cli: {
+        migrationsDir: 'src/migrations'
+    },
+    synchronize: false,
+    migrationsRun: true
 }
