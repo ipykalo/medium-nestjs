@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner} from "typeorm";
+import { MigrationInterface, QueryRunner } from "typeorm";
 
 export class CreateTables1646825785963 implements MigrationInterface {
     name = 'CreateTables1646825785963'
@@ -12,5 +12,4 @@ export class CreateTables1646825785963 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE "tags"`);
         await queryRunner.query(`DROP TABLE "users"`);
     }
-
 }
