@@ -3,7 +3,7 @@ import { UserEntity } from "src/user/user.entity";
 import { CreateUserDto } from "./create-user.dto";
 import { UserService } from "./user.service";
 
-@Controller('user')
+@Controller('users')
 export class UserController {
 
     constructor(private userService: UserService) { }
