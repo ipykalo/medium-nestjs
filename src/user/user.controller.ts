@@ -13,6 +13,11 @@ export class UserController {
         return this.userService.findAll();
     }
 
+    @Get(':id')
+    getOne(@Param('id') id: string): Promise<UserEntity> {
+        return this.userService.findOne(+id);
+    }
+
     @Post()
     create(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
         return this.userService.create(createUserDto);
