@@ -1,7 +1,7 @@
-import {MigrationInterface, QueryRunner} from "typeorm";
+import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class CreateTables1646924078441 implements MigrationInterface {
-    name = 'CreateTables1646924078441'
+export class CreateTB1646927733929 implements MigrationInterface {
+    name = 'CreateTB1646927733929'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "tags" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, CONSTRAINT "PK_e7dc17249a1148a1970748eda99" PRIMARY KEY ("id"))`);
@@ -12,4 +12,5 @@ export class CreateTables1646924078441 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE "users"`);
         await queryRunner.query(`DROP TABLE "tags"`);
     }
+
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { UserEntity } from "src/user/user.entity";
 import { CreateUserDto } from "./create-user.dto";
 import { UserService } from "./user.service";
@@ -9,12 +9,22 @@ export class UserController {
     constructor(private userService: UserService) { }
 
     @Get()
-    getUser(): Promise<UserEntity[]> {
+    getAll(): Promise<UserEntity[]> {
         return this.userService.findAll();
     }
 
     @Post()
-    createUser(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
+    create(@Body() createUserDto: CreateUserDto): Promise<UserEntity> {
         return this.userService.create(createUserDto);
+    }
+
+    @Delete(':id')
+    async remove(@Param('id') id: string): Promise<string> {
+        const res = await this.userService.remove(id);
+
+        if (res?.affected > 0) {
+            return 'Deleted successfuly';
+        }
+        return `Can not delete user with id: ${id}`;
     }
 }

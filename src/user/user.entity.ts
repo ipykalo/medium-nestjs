@@ -20,6 +20,6 @@ export class UserEntity {
 
     @BeforeInsert()
     async hashPassword(): Promise<void> {
-        this.password = await hash(this.password, 20);
+        this.password = await hash(this.password, 10);
     }
 };

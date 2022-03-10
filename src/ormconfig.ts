@@ -19,7 +19,7 @@ const config: ConnectionOptions = {
         migrationsDir: 'src/migrations'
     },
     synchronize: true,
-    migrationsRun: true
+    migrationsRun: false
 }
 
 export default config;

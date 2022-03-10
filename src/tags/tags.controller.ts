@@ -26,9 +26,9 @@ export class TagsController {
         const resp = await this.tagService.editTag(id, tag);
 
         if (resp?.affected > 0) {
-            return 'success';
+            return 'Updated successfully';
         }
-        return `can not edit tag with id: ${id}`;
+        return `Can not edit tag with id: ${id}`;
     }
 
     @Delete(':id')
@@ -36,8 +36,8 @@ export class TagsController {
         const res = await this.tagService.deleteTag(+id);
 
         if (res?.affected > 0) {
-            return 'success';
+            return 'Deleted successfully';
         }
-        return 'can not delete tag';
+        return `Can not delete tag with id: ${id}`;
     }
 }
