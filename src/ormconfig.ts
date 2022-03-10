@@ -5,7 +5,7 @@ const config: ConnectionOptions = {
     type: 'postgres',
     host: 'localhost',
     port: 5432,
-    username: 'medium',
+    username: 'postgres',
     password: '12457800',
     database: 'medium',
     entities: [
