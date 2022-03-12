@@ -4,12 +4,15 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TagsModule } from './tags/tags.module';
+import { AuthModule } from './auth/auth.module';
+
 import config from './ormconfig';
 
 @Module({
   imports: [
     TagsModule,
     UserModule,
+    AuthModule,
     TypeOrmModule.forRoot(config)
   ],
   controllers: [AppController],

@@ -22,6 +22,10 @@ export class UserService {
         return this.repo.findOne(id);
     }
 
+    findByEmail(email: string): Promise<UserEntity> {
+        return this.repo.findOne({ email });
+    }
+
     remove(id: string): Promise<DeleteResult> {
         return this.repo.delete(id);
     }
