@@ -14,7 +14,7 @@ export class AuthController {
         if (!isAuthenticated) {
             throw new UnauthorizedException();
         }
-        const jwt = await this.authService.generateToken(loginUserDto.email);
+        const jwt: string = await this.authService.generateToken();
         return { jwt };
     }
 }

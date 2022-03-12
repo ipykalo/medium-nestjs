@@ -3,25 +3,34 @@ import { UserService } from "src/user/user.service";
 import { LoginUserDto } from "./login-user.dto";
 import { sign, verify } from "jsonwebtoken";
 import { compare } from "bcrypt";
+import { UserType } from "src/user/user.type";
+import { JWT_SECRET } from "src/config";
 
 @Injectable()
 export class AuthService {
-    private readonly secretKey: string = 'secret_key';
+    private user: UserType;
 
     constructor(private userService: UserService) { }
 
     async verifyUser(loginUserDto: LoginUserDto): Promise<boolean> {
-        const user = await this.userService.findByEmail(loginUserDto.email);
+        this.user = await this.userService.findByEmail(loginUserDto.email);
 
-        if (!user) {
+        if (!this.user) {
             return false;
         }
-        return await compare(loginUserDto.password, user.password);
+        return await compare(loginUserDto.password, this.user.password);
     }
 
-    generateToken(email: string): Promise<string> {
+    generateToken(): Promise<string> {
         try {
-            return sign({ email }, this.secretKey);
+            return sign(
+                {
+                    id: this.user.id,
+                    email: this.user.email,
+                    userName: this.user.userName
+                },
+                JWT_SECRET
+            );
         } catch (error) {
             return Promise.resolve('');
         }
@@ -29,7 +38,8 @@ export class AuthService {
 
     verifyToken(token: string): boolean {
         try {
-            var decoded = verify(token, this.secretKey);
+            var decoded = verify(token, JWT_SECRET);
+            console.log(decoded, 'decoded_token');
             return !!decoded
         } catch (error) {
             return false;

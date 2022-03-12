@@ -10,7 +10,7 @@ export class UserEntity {
     email: string;
 
     @Column()
-    username: string;
+    userName: string;
 
     @Column({ default: "" })
     bio: string;
