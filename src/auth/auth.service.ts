@@ -29,7 +29,8 @@ export class AuthService {
                     email: this.user.email,
                     userName: this.user.userName
                 },
-                JWT_SECRET
+                JWT_SECRET,
+                { expiresIn: 60 * 60 }
             );
         } catch (error) {
             return Promise.resolve('');
