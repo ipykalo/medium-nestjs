@@ -1,6 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { classToPlain } from "class-transformer";
 import { UserEntity } from "src/user/user.entity";
 import { DeleteResult, Repository } from "typeorm";
 import { CreateUserDto } from "./create-user.dto";
