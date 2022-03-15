@@ -39,7 +39,6 @@ export class AuthService {
     verifyToken(token: string): boolean {
         try {
             var decoded = verify(token, JWT_SECRET);
-            console.log(decoded, 'decoded_token');
             return !!decoded
         } catch (error) {
             return false;
