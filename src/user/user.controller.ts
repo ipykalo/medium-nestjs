@@ -1,6 +1,7 @@
-import { Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, UseGuards, UseInterceptors } from "@nestjs/common";
+import { BadRequestException, Body, ClassSerializerInterceptor, Controller, Delete, Get, Param, Post, Put, UseGuards, UseInterceptors } from "@nestjs/common";
 import { AuthGuard } from "src/auth/auth.guard";
-import { CreateUserDto } from "./create-user.dto";
+import { CreateUserDto } from "./dtos/create-user.dto";
+import { UpdateUserDto } from "./dtos/update-user.dto";
 import { UserService } from "./user.service";
 import { UserType } from "./user.type";
 
@@ -22,8 +23,22 @@ export class UserController {
     }
 
     @Post()
-    create(@Body() createUserDto: CreateUserDto): Promise<UserType> {
-        return this.userService.create(createUserDto);
+    create(@Body() createUser: CreateUserDto): Promise<UserType> {
+        return this.userService.create(createUser);
+    }
+
+    @Put(':id')
+    async update(@Param('id') id: number, @Body() updateUser: Partial<UpdateUserDto>): Promise<string> {
+        try {
+            const res = await this.userService.update(id, updateUser);
+
+            if (res?.affected > 0) {
+                return 'Updated successfuly';
+            }
+            return `Can not update user with id: ${id}`;
+        } catch (error) {
+            throw new BadRequestException();
+        }
     }
 
     @Delete(':id')

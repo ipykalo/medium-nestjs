@@ -1,8 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { UserEntity } from "src/user/user.entity";
-import { DeleteResult, Repository } from "typeorm";
-import { CreateUserDto } from "./create-user.dto";
+import { DeleteResult, Repository, UpdateResult } from "typeorm";
+import { CreateUserDto } from "./dtos/create-user.dto";
+import { UpdateUserDto } from "./dtos/update-user.dto";
 import { UserType } from "./user.type";
 
 @Injectable()
@@ -18,6 +19,10 @@ export class UserService {
         }
         const newUser = this.repo.create(createUser);
         return this.repo.save(newUser);
+    }
+
+    update(id: number, user: Partial<UpdateUserDto>): Promise<UpdateResult> {
+        return this.repo.update(id, user);
     }
 
     findAll(): Promise<UserType[]> {
